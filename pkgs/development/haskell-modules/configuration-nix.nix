@@ -615,6 +615,10 @@ self: super: builtins.intersectAttrs super {
   http-download = dontCheck super.http-download;
   pantry = dontCheck super.pantry;
 
+  # Needs to have hspec bumped to >= 2.7.1
+  # https://github.com/sebastiaanvisser/clay/pull/187
+  clay = dontCheck super.clay;
+
   # Hadolint wants to build a statically linked binary by default.
   hadolint = overrideCabal super.hadolint (drv: {
     preConfigure = "sed -i -e /ld-options:/d hadolint.cabal";
